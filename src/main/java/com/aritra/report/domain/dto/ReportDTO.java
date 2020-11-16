@@ -1,5 +1,6 @@
 package com.aritra.report.domain.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReportDTO {
@@ -8,7 +9,7 @@ public class ReportDTO {
     private String description;
     private String tableName;
     private String sqlQuery;
-    private List<ParameterDTO> parameters;
+    private List<ParameterDTO> parameters=new ArrayList<>();
 
     public Long getId() {
         return id;

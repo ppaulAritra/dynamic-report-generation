@@ -1,0 +1,24 @@
+
+<div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow"
+	data-scroll-to-active="true" xmlns:th="http://www.thymeleaf.org"
+	th:fragment="leftsidebar">
+
+	<div class="main-menu-content">
+		<ul class="navigation navigation-main" id="main-menu-navigation"
+			data-menu="menu-navigation"
+			th:with="path=${#httpServletRequest.getServletPath()}">
+
+			<li
+				th:classappend="${#strings.startsWith(path,'/home')? 'active' : ''}"><a
+				th:href="@{/home}"><span class="menu-title"
+					data-i18n="nav.dash.main">Report</span></a></li>
+
+		</ul>
+	</div>
+</div>
+
+
+<script>
+	
+</script>
+

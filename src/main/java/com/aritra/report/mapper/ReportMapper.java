@@ -1,6 +1,7 @@
 package com.aritra.report.mapper;
 
 import com.aritra.report.domain.Report;
+import com.aritra.report.domain.dto.ParameterDTO;
 import com.aritra.report.domain.dto.ReportDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,12 @@ public class ReportMapper {
         report.setDescription(reportDTO.getDescription());
         report.setTableName(reportDTO.getTableName());
         report.setQuery(reportDTO.getSqlQuery());
+        if(reportDTO.getParameters().isEmpty())
+        {
+            ParameterDTO parameterDTO= new ParameterDTO();
+            parameterDTO.setParameterType("Empty");
+            reportDTO.getParameters().add(parameterDTO);
+        }
         report.setReportParameters(reportDTO.getParameters().stream().map(p->parameterMapper.requestMapper(p)).collect(Collectors.toList()));
         return report;
     }
@@ -28,7 +35,9 @@ public class ReportMapper {
         reportDTO.setDescription(entity.getDescription());
         reportDTO.setSqlQuery(entity.getQuery());
         reportDTO.setTableName(entity.getTableName());
+        if(entity.getReportParameters()!=null)
         reportDTO.setParameters(entity.getReportParameters().stream().map(p->parameterMapper.responseMapper(p)).collect(Collectors.toList()));
+        //System.out.println(reportDTO);
         return reportDTO;
     }
 }

@@ -19,6 +19,7 @@ public class EmployeeMapper {
     }
     public  EmployeeDTO responseMapper(Employee entity){
         EmployeeDTO employee=new EmployeeDTO();
+        employee.setId(entity.getId());
         employee.setFirstName(entity.getFirstName());
         employee.setLastName(entity.getLastName());
         employee.setDesignation(entity.getDesignation());

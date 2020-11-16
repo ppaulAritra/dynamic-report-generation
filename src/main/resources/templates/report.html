@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description"
+          content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
+    <meta name="keywords"
+          content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
+    <meta name="author" content="PIXINVENT">
+    <title>Module: Report</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+          crossorigin="anonymous">
+    <!--<link rel="shortcut icon" type="image/x-icon"
+          th:href="@{/app-assets/images/logo.png}">-->
+    <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
+            rel="stylesheet">
+    <link
+            href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
+            rel="stylesheet">
+    <!-- BEGIN VENDOR CSS-->
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/css/vendors.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/extensions/sweetalert.css}">
+    <!-- <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/forms/selects/select2.min.css}"> -->
+    <!-- END VENDOR CSS-->
+    <!-- BEGIN MODERN CSS-->
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/css/app.css}">
+    <!-- END MODERN CSS-->
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/css/core/menu/menu-types/vertical-menu-modern.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/css/core/colors/palette-gradient.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/charts/jquery-jvectormap-2.0.3.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/charts/morris.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/fonts/simple-line-icons/style.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/css/core/colors/palette-gradient.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css" />
+    <!-- END Page Level CSS-->
+    <!-- BEGIN Custom CSS-->
+    <!-- <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css"> -->
+    <!-- <link th:href="@{/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css}" rel="stylesheet" type="text/css"/> -->
+    <!-- END Custom CSS-->
+</head>
+<body
+        class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
+        data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+<!-- fixed-top-->
+<!-- Top Menu Items -->
+<div th:replace="fragments/header :: header"></div>
+<!-- /Top Menu Items -->
+
+<!-- Left Sidebar Menu -->
+<div th:replace="fragments/leftsidebar :: leftsidebar"></div>
+<!-- /Left Sidebar Menu -->
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
+                <h3 class="content-header-title mb-0 d-inline-block">Report
+                    List</h3>
+
+            </div>
+            <div class="content-header-right col-md-6 col-12">
+
+            </div>
+        </div>
+        <div class="content-body">
+
+            <section class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-head">
+                            <div class="card-header">
+                                <h4 class="card-title"></h4>
+                                <a class="heading-elements-toggle"><i
+                                        class="la la-ellipsis-h font-medium-3"></i></a>
+                                <div class="heading-elements">
+
+                                    <button type="button" class="btn btn-primary  btn-md"
+                                            data-toggle="modal" th:onclick="'openNewReportModal();'">
+                                        <i class="ft-plus white"></i>New Report
+                                    </button>
+                                    <!-- <button class="btn btn-success btn-sm"><i class="ft-settings white"></i></button> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body">
+
+
+                                <div class="row">
+
+
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+
+                                            <table class="table table-white-space table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Title</th>
+                                                    <th>Description</th>
+                                                    <th>Actions</th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody th:if="${#lists.isEmpty(reportList)}">
+                                                <tr>
+
+                                                    <td colspan="4" style="text-align: center">No
+                                                        info to show</td>
+                                                </tr>
+
+                                                </tbody>
+
+                                                <tbody>
+                                                <tr th:each="report,iterator:${reportList}">
+                                                    <td style="text-align: center" th:text="${iterator.index+1}" ></td>
+                                                    <td style="text-align: center" th:text="${report.title}" ></td>
+                                                    <td style="text-align: center" th:text="${report.description}" ></td>
+                                                    <td style="text-align: center"><button class="btn btn-primary  btn-md"
+                                                                th:onclick="'checkParam(\'' + ${report.id} + '\');'">
+                                                        View</button></td>
+                                                </tr>
+
+                                                </tbody>
+
+
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="modal fade text-left" id="params" tabindex="-1"
+                                     role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document"
+                                         th:fragment="params">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h3 class="modal-title" id="myModalLabel36">Query Parameter</h3>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+
+                                            <form id="param-form" th:object="${parameter}" th:action="@{/report/result}" method="post">
+                                                <div class="modal-body">
+
+                                                    <input type="hidden" id ="reportId" th:field="*{reportId}" />
+
+                                                    <table id="inputParamTable" class=" table parameter">
+
+                                                        <tbody>
+                                                        <tr th:each="par,iterator:${parameter.parameters}">
+
+                                                            <td class="" ><input
+                                                                    type="text" id="p_name" readonly
+                                                                    th:value="${par.parameterName}"
+                                                                    th:name="|parameters[${iterator.index}].parameterName|"
+                                                                class="form-control p_name" />
+                                                            </td>
+                                                            <td class="" ><input
+                                                                    type="text" id="p_type" readonly
+                                                                    th:value="${par.parameterType}"
+                                                                    th:name="|parameters[${iterator.index}].parameterType|"
+                                                                class="form-control p_type" />
+                                                            </td>
+                                                            <td class="" ><input
+                                                                    type="text" id="p_value" required
+                                                                    th:value="${par.parameterValue}"
+                                                                    th:name="|parameters[${iterator.index}].parameterValue|"
+                                                                    class="form-control p_type" />
+                                                            </td>
+                                                        </tr>
+
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input type="reset" class="btn btn-outline-secondary btn-lg"
+                                                           data-dismiss="modal" value="close">
+                                                    <button type="submit" class="btn btn-outline-primary btn-lg"
+                                                             value="Forward">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade text-left" id="add-report" tabindex="-1"
+                                     role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h3 class="modal-title" id="myModalLabel35">New Report</h3>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <form id="myform-create" th:object="${report}" th:action="@{/report}" method="post">
+                                                <div class="modal-body">
+                                                    <div class="row">
+
+                                                        <div class="col-md-10">
+                                                            <div class="form-group">
+                                                                <label>Title</label> <input class="form-control" required
+                                                                                            th:field="*{title}"
+                                                                                            placeholder="Enter report title">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col-md-10">
+                                                            <div class="form-group">
+                                                                <label>Description</label> <input class="form-control" required
+                                                                                                  th:field="*{description}"
+                                                                                                  placeholder="Enter report description">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col-md-10">
+                                                            <div class="form-group">
+                                                                <label>Table name</label> <input class="form-control" required
+                                                                                                 th:field="*{tableName}"
+                                                                                                 placeholder="Enter table name">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col-md-10">
+                                                            <div class="form-group">
+                                                                <label>Query</label> <textarea class="form-control" required
+                                                                                               th:field="*{sqlQuery}"
+                                                                                               placeholder="Enter query"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="row container">
+                                                        <table id="myTable" class=" table parameter">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>Parameter name</th>
+                                                                <th>Parameter type</th>
+
+                                                            </tr>
+                                                            </thead>
+                                                            <tfoot>
+
+
+                                                            <tr>
+                                                                <td colspan="2" style="text-align: left;"><input
+                                                                        type="button" class="btn btn-lg btn-block " id="addrow"
+                                                                        value="Add Parameter" />
+                                                                </td>
+                                                            </tr>
+
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input type="reset" class="btn btn-outline-secondary btn-lg"
+                                                           data-dismiss="modal" value="close">
+                                                    <button type="submit" class="btn btn-outline-primary btn-lg"
+                                                             value="Forward">Create</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
+
+            <!-- Analytics map based session -->
+        </div>
+    </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+<footer
+        class="footer footer-static footer-light navbar-border navbar-shadow">
+    <!-- <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
+  <span class="float-md-left d-block d-md-inline-block">Copyright &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent"
+    target="_blank">PIXINVENT </a>, All rights reserved. </span>
+  <span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span>
+</p> -->
+</footer>
+<!-- BEGIN VENDOR JS-->
+<script th:src="@{/app-assets/vendors/js/vendors.min.js}"
+        type="text/javascript"></script>
+<script th:src="@{/app-assets/vendors/js/extensions/sweetalert.min.js}"
+        type="text/javascript"></script>
+<!-- BEGIN VENDOR JS-->
+<!-- BEGIN PAGE VENDOR JS-->
+
+<!-- END PAGE VENDOR JS-->
+<!-- BEGIN MODERN JS-->
+<script th:src="@{/app-assets/js/core/app-menu.js}"
+        type="text/javascript"></script>
+<script th:src="@{/app-assets/js/core/app.js}" type="text/javascript"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+
+
+<script th:inline="javascript">
+
+    function openNewReportModal(){
+
+        $('#add-report').modal('show');
+
+        var index =0;
+        $("#addrow").on("click", function () {
+            var newRow = $("<tr>");
+            var cols = "";
+
+            cols += '<td ><input type="text" class="form-control" id="param_name'+index+'" name="parameters['+index+'].parameterName" th:field="*{parameters['+index+'].parameterName}" required/></td>';
+            cols += '<td ><input type="text" class="form-control" id="param_type'+index+'" name="parameters['+index+'].parameterType" th:field="*{parameters['+index+'].parameterType}" required/></td>';
+
+            newRow.append(cols);
+            $("table.parameter").append(newRow);
+            index++;
+
+
+
+        });
+    }
+    function checkParam(reportId){
+        $.ajax({
+            type: 'get',
+            url: /*[[ @{'/report/param'} ]]*/,
+            data:  { reportId: reportId},
+            success: function(returnedData){
+
+                if(returnedData =='no')
+                {
+                    $('#reportId').val(reportId);
+                    $("#param-form").submit();
+                  //  window.location.href =("http://localhost:8080/home");
+                }
+                else {
+                    viewReport(reportId)
+                }
+            },
+
+        });
+    }
+    function viewReport(reportId){
+        $.ajax({
+            type: 'get',
+            url: /*[[ @{'/report'} ]]*/,
+            data:  { reportId: reportId},
+            success: function(returnedData){
+
+                    $('#params').html(returnedData);
+                    $('#params').modal('show');
+
+            },
+
+        });
+    }
+
+    $('#myForm-monthly').submit(function (e){
+
+        $('#view-new-report').modal('hide');
+        swal("Downloading!", "It may take some time. Please don't close your download tab   ", "success");
+    });
+
+</script>
+</body>
+<style>
+    table td {
+        word-wrap: break-word; /* All browsers since IE 5.5+ */
+        overflow-wrap: break-word; /* Renamed property in CSS3 draft spec */
+    }
+</style>
+<style>
+    tr:nth-child(even) {
+        background-color: #f5f5f5
+    }
+</style>
+</html>

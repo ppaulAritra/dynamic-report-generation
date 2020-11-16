@@ -4,6 +4,7 @@ import com.aritra.report.common.EntityNotFoundException;
 import com.aritra.report.domain.Report;
 import com.aritra.report.domain.ReportParameter;
 import com.aritra.report.domain.dto.ParameterDTO;
+import com.aritra.report.domain.dto.QueryDTO;
 import com.aritra.report.domain.dto.ReportDTO;
 import com.aritra.report.mapper.ParameterMapper;
 import com.aritra.report.mapper.ReportMapper;
@@ -43,10 +44,31 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
+    public List<ReportDTO> getAllReport() {
+        List<Report> reportList=reportRepository.findAll();
+        return reportList.stream().map(p->reportMapper.responseMapper(p)).collect(Collectors.toList());
+    }
+
+    @Override
     public List<ParameterDTO> getReportParameters(Long reportId) {
         Report report= reportRepository.findFirstById(reportId);
         if(report==null)
             throw new EntityNotFoundException("No such report record found");
         return report.getReportParameters().stream().map(p->parameterMapper.responseMapper(p)).collect(Collectors.toList());
+    }
+
+    @Override
+    public QueryDTO getQueryRequirements(Long reportId) {
+        List<ParameterDTO> parameters=this.getReportParameters(reportId);
+        if(parameters.size()==1 && parameters.get(0).getParameterType().equalsIgnoreCase("empty"))
+        return null;
+        else
+        {
+            QueryDTO queryDTO= new QueryDTO();
+            queryDTO.setReportId(reportId);
+            queryDTO.setParameters(parameters);
+            return queryDTO;
+        }
+
     }
 }

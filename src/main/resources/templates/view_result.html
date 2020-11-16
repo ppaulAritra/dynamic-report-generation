@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description"
+          content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
+    <meta name="keywords"
+          content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
+    <meta name="author" content="PIXINVENT">
+    <title>Module: Report</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+          crossorigin="anonymous">
+    <!--<link rel="shortcut icon" type="image/x-icon"
+          th:href="@{/app-assets/images/logo.png}">-->
+    <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
+            rel="stylesheet">
+    <link
+            href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
+            rel="stylesheet">
+    <!-- BEGIN VENDOR CSS-->
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/css/vendors.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/extensions/sweetalert.css}">
+    <!-- <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/forms/selects/select2.min.css}"> -->
+    <!-- END VENDOR CSS-->
+    <!-- BEGIN MODERN CSS-->
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/css/app.css}">
+    <!-- END MODERN CSS-->
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/css/core/menu/menu-types/vertical-menu-modern.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/css/core/colors/palette-gradient.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/charts/jquery-jvectormap-2.0.3.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/vendors/css/charts/morris.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/fonts/simple-line-icons/style.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/app-assets/css/core/colors/palette-gradient.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css"/>
+    <!-- END Page Level CSS-->
+    <!-- BEGIN Custom CSS-->
+    <!-- <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css"> -->
+    <!-- <link th:href="@{/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css}" rel="stylesheet" type="text/css"/> -->
+    <!-- END Custom CSS-->
+</head>
+<body
+        class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
+        data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+<!-- fixed-top-->
+<!-- Top Menu Items -->
+<div th:replace="fragments/header :: header"></div>
+<!-- /Top Menu Items -->
+
+<!-- Left Sidebar Menu -->
+<div th:replace="fragments/leftsidebar :: leftsidebar"></div>
+<!-- /Left Sidebar Menu -->
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
+                <h3 class="content-header-title mb-0 d-inline-block">Report
+                    Data</h3>
+
+            </div>
+            <div class="content-header-right col-md-6 col-12">
+
+            </div>
+        </div>
+        <div class="content-body">
+
+            <section class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-head">
+                            <input type="button" id="btnExport" value=" Export Table data into Excel " />
+                        </div>
+                            <div class="card-content">
+                                <div class="card-body">
+
+
+                                    <div class="row col-md-12" >
+
+
+                                        <div class="col-md-10">
+                                            <div  id="dvData" class="col-md-10">
+
+                                                <table >
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Analytics map based session -->
+        </div>
+    </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+<footer
+        class="footer footer-static footer-light navbar-border navbar-shadow">
+    <!-- <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
+  <span class="float-md-left d-block d-md-inline-block">Copyright &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent"
+    target="_blank">PIXINVENT </a>, All rights reserved. </span>
+  <span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span>
+</p> -->
+</footer>
+<!-- BEGIN VENDOR JS-->
+<script th:src="@{/app-assets/vendors/js/vendors.min.js}"
+        type="text/javascript"></script>
+<script th:src="@{/app-assets/vendors/js/extensions/sweetalert.min.js}"
+        type="text/javascript"></script>
+<!-- BEGIN VENDOR JS-->
+<!-- BEGIN PAGE VENDOR JS-->
+
+<!-- END PAGE VENDOR JS-->
+<!-- BEGIN MODERN JS-->
+<script th:src="@{/app-assets/js/core/app-menu.js}"
+        type="text/javascript"></script>
+<script th:src="@{/app-assets/js/core/app.js}" type="text/javascript"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+
+
+<script th:inline="javascript">
+let result_data=[[${resultData}]];
+
+const header = Object.keys(result_data[0]);
+console.log(header);
+$(document).ready(function () {
+    let table = document.querySelector("table");
+    generateTableHead(table, header)
+    generateTable(table,result_data);
+});
+
+function generateTable(table, data) {
+    for (let element of data) {
+        let row = table.insertRow();
+        for (key in element) {
+            let cell = row.insertCell();
+            let text = document.createTextNode(element[key]);
+            cell.appendChild(text);
+        }
+    }
+}
+function generateTableHead(table, data) {
+    let thead = table.createTHead();
+    let row = thead.insertRow();
+    for ( key in data) {
+        let th = document.createElement("th");
+        let text = document.createTextNode(data[key]);
+        th.appendChild(text);
+        row.appendChild(th);
+    }
+}
+$("#btnExport").click(function (e) {
+    window.open('data:application/vnd.ms-excel,' + $('#dvData').html());
+    e.preventDefault();
+});
+</script>
+</body>
+<style>
+    body {
+        font-size: 12pt;
+        font-family: Calibri;
+        padding : 10px;
+
+    }
+    table {
+        border: 1px solid black;
+    }
+    th {
+        border: 1px solid black;
+        padding: 5px;
+        background-color:grey;
+        color: white;
+    }
+    td {
+        border: 1px solid black;
+        padding: 5px;
+    }
+    input {
+        font-size: 12pt;
+        font-family: Calibri;
+    }
+    table td {
+        word-wrap: break-word; /* All browsers since IE 5.5+ */
+        overflow-wrap: break-word; /* Renamed property in CSS3 draft spec */
+    }
+</style>
+<style>
+    tr:nth-child(even) {
+        background-color: #f5f5f5
+    }
+</style>
+</html>

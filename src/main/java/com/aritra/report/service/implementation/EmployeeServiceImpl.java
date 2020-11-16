@@ -1,5 +1,6 @@
 package com.aritra.report.service.implementation;
 
+import com.aritra.report.common.EntityNotFoundException;
 import com.aritra.report.domain.dto.EmployeeDTO;
 import com.aritra.report.mapper.EmployeeMapper;
 import com.aritra.report.repository.EmployeeRepository;
@@ -21,6 +22,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDTO saveEmployee(EmployeeDTO employeeDTO) {
+        if(employeeDTO==null)
+            throw new EntityNotFoundException("Null dto received");
         return employeeMapper.responseMapper(employeeRepository.save(employeeMapper.requestMapper(employeeDTO)));
     }
 }

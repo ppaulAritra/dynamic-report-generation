@@ -4,6 +4,7 @@ public class ParameterDTO {
     private Long id;
     private String parameterName;
     private String parameterType;
+    private String parameterValue;
 
     public Long getId() {
         return id;
@@ -29,12 +30,21 @@ public class ParameterDTO {
         this.parameterType = parameterType;
     }
 
+    public String getParameterValue() {
+        return parameterValue;
+    }
+
+    public void setParameterValue(String parameterValue) {
+        this.parameterValue = parameterValue;
+    }
+
     @Override
     public String toString() {
         return "ParameterDTO{" +
                 "id=" + id +
                 ", parameterName='" + parameterName + '\'' +
                 ", parameterType='" + parameterType + '\'' +
+                ", parameterValue='" + parameterValue + '\'' +
                 '}';
     }
 }
