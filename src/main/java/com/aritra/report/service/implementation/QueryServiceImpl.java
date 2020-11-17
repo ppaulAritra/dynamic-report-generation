@@ -37,9 +37,8 @@ public class QueryServiceImpl implements QueryService {
         String hql = reportDTO.getSqlQuery();
 
         Query query = session.createQuery(hql);
-        if (queryDTO.getParameters() == null) {
+        if (queryDTO.getParameters() != null) {
 
-        } else {
             for (ParameterDTO param : queryDTO.getParameters()) {
                 if (param.getParameterType().equalsIgnoreCase("string"))
                     query.setParameter(param.getParameterName(), param.getParameterValue());
